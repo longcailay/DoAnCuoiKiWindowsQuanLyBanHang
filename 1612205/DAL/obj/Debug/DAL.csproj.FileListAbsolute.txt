@@ -1,0 +1,9 @@
+F:\ĐoAnWindows\1612205\DAL\bin\Debug\DAL.dll
+F:\ĐoAnWindows\1612205\DAL\bin\Debug\DAL.pdb
+F:\ĐoAnWindows\1612205\DAL\bin\Debug\DTO.dll
+F:\ĐoAnWindows\1612205\DAL\bin\Debug\DTO.pdb
+F:\ĐoAnWindows\1612205\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+F:\ĐoAnWindows\1612205\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+F:\ĐoAnWindows\1612205\DAL\obj\Debug\DAL.csproj.CopyComplete
+F:\ĐoAnWindows\1612205\DAL\obj\Debug\DAL.dll
+F:\ĐoAnWindows\1612205\DAL\obj\Debug\DAL.pdb

@@ -1,0 +1,6 @@
+F:\ĐoAnWindows\1612205\DTO\bin\Debug\DTO.dll
+F:\ĐoAnWindows\1612205\DTO\bin\Debug\DTO.pdb
+F:\ĐoAnWindows\1612205\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+F:\ĐoAnWindows\1612205\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+F:\ĐoAnWindows\1612205\DTO\obj\Debug\DTO.dll
+F:\ĐoAnWindows\1612205\DTO\obj\Debug\DTO.pdb
