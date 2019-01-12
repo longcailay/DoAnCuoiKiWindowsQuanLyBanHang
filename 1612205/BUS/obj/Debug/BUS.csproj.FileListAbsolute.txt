@@ -9,3 +9,14 @@ F:\ĐoAnWindows\1612205\BUS\obj\Debug\BUS.csproj.CoreCompileInputs.cache
 F:\ĐoAnWindows\1612205\BUS\obj\Debug\BUS.csproj.CopyComplete
 F:\ĐoAnWindows\1612205\BUS\obj\Debug\BUS.dll
 F:\ĐoAnWindows\1612205\BUS\obj\Debug\BUS.pdb
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\BUS.dll
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\BUS.pdb
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\DAL.dll
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\DTO.dll
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\DAL.pdb
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\bin\Debug\DTO.pdb
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\obj\Debug\BUS.csprojAssemblyReference.cache
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\obj\Debug\BUS.csproj.CoreCompileInputs.cache
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\obj\Debug\BUS.csproj.CopyComplete
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\obj\Debug\BUS.dll
+F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\BUS\obj\Debug\BUS.pdb

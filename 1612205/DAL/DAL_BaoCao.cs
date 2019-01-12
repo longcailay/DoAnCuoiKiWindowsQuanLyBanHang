@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class DAL_BaoCao
+    public class DAL_BaoCao
     {
+
     }
 }

@@ -3,15 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:_1612205"
-        
+        xmlns:local="clr-namespace:_1612205"        
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" MaxHeight="700" MaxWidth="1100">
     <Canvas >
         <Grid Height="80" VerticalAlignment="Top" Background="#FF5C99D6" Width="1092">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
-            </Grid.Effect>            
+            </Grid.Effect>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">QUẢN LÝ BÁN HÀNG</TextBlock>
         </Grid>
         <DockPanel x:Name="stpHome" Width="300" Height="670" Background="#FF31577E" LastChildFill="True">
@@ -23,13 +22,72 @@
             </StackPanel>
             <StackPanel ></StackPanel>
         </DockPanel>
+
+        <!--#region Usercontrol sanPham-->
         <UserControl Name="uscSanPham"  Background="Green" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
-            <Canvas>                
-                <Label Content="usercontrol sản phẩm"></Label>
-                
+            <Canvas>
+                <StackPanel Name="stpSanPhamButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
+                    <Button Name="btnThemSanPham" Width="200" Content="Thêm Sản Phẩm" Click="btnThemSanPham_Click"/>
+                    <Button Name="btnLocSanPham" Width="200" Content="Lọc"></Button>
+                    <Button Name="btnTimKiemSanPham" Width="200" Content="Tìm kiếm"></Button>
+                </StackPanel>
+                <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510">
+                    <ScrollViewer>
+                        <Grid VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <ListView x:Name="lsvProduct" Grid.Row="1" MouseDoubleClick="lsvProduct_MouseDoubleClick">
+                                <ListView.ItemTemplate >
+                                    <DataTemplate >
+                                        <StackPanel  MouseDown="st_MouseDown" Height="200" Width="200">
+                                            <Canvas Height="200" Width="200"  Name="cv" MouseDown="cv_MouseDown">
+                                                <TextBlock     
+                               Height="20"
+                               Width="80"                       
+                               FontSize="12"
+                               Foreground="Red"
+                               Text="{Binding GiaTien}"
+                               Margin="100,0,0,0" MouseDown="txb_MouseDown" >
+
+                                                </TextBlock>
+
+                                                <Image Source="{Binding TenFile}" 
+                               Height="150"
+                               Width="200"
+                                   Margin="0,20,0,10" MouseLeftButtonUp="Image_MouseLeftButtonUp">
+                                                </Image>
+
+                                                <TextBlock 
+                               Text="{Binding TenFile}"
+                               FontSize="13"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap"
+                               Margin="30,180,10,0" MouseDown="TextBlock_MouseDown">
+                                                </TextBlock>
+
+
+                                            </Canvas>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="3" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </Grid>
+
+                    </ScrollViewer>
+                </Grid>
             </Canvas>
-            
         </UserControl>
+        <!--#endregion-->
+
+        <!--#region User control Baocao-->
         <UserControl Name="uscBaoCao" Visibility="Collapsed" Background="Blue" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
             <Canvas>
                 <StackPanel Name="stpBaoCaoButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
@@ -38,6 +96,8 @@
                 </StackPanel>
             </Canvas>
         </UserControl>
+        <!--#endregion-->
+
 
         <UserControl Name="uscGiaoDich" Visibility="Collapsed" Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
             <Label Content="usercontrol giao dịch"></Label>
