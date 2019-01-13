@@ -7,11 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" MaxHeight="700" MaxWidth="1100">
     <Canvas >
-        <Grid Height="80" VerticalAlignment="Top" Background="#FF5C99D6" Width="1092">
+        <Grid Height="80" VerticalAlignment="Top" Background="#FF5C99D6" Width="1100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="983*"/>
+                <ColumnDefinition Width="109*"/>
+            </Grid.ColumnDefinitions>
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">QUẢN LÝ BÁN HÀNG</TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Margin="443,25,333,25">QUẢN LÝ BÁN HÀNG</TextBlock>
         </Grid>
         <DockPanel x:Name="stpHome" Width="300" Height="670" Background="#FF31577E" LastChildFill="True">
             <StackPanel x:Name="stpUser" Height="200" Background="Aqua" DockPanel.Dock="Top"></StackPanel>
@@ -20,11 +24,11 @@
                 <Button Name="btnBaoCao" Content="Báo cáo" Height="100" Click="btnBaoCao_Click"></Button>
                 <Button Name="btnGiaoDich" Content="Giao dịch" Height="100" Click="btnGiaoDich_Click"></Button>
             </StackPanel>
-            <StackPanel ></StackPanel>
+
         </DockPanel>
 
         <!--#region Usercontrol sanPham-->
-        <UserControl Name="uscSanPham"  Background="Green" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
+        <UserControl Name="uscSanPham"  Background="Green" Width="800" Canvas.Left="300" Canvas.Top="76" Height="590" Loaded="uscSanPham_Loaded">
             <Canvas>
                 <StackPanel Name="stpSanPhamButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
                     <Button Name="btnThemSanPham" Width="200" Content="Thêm Sản Phẩm" Click="btnThemSanPham_Click"/>
@@ -32,7 +36,12 @@
                     <Button Name="btnTimKiemSanPham" Width="200" Content="Tìm kiếm"></Button>
                 </StackPanel>
                 <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510">
-                    <ScrollViewer>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer Grid.ColumnSpan="2" Margin="0,0,15,0" RenderTransformOrigin="0.509,0.503">
                         <Grid VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -40,35 +49,14 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <ListView x:Name="lsvProduct" Grid.Row="1" MouseDoubleClick="lsvProduct_MouseDoubleClick">
-                                <ListView.ItemTemplate >
+                                <ListView.ItemTemplate>
                                     <DataTemplate >
                                         <StackPanel  MouseDown="st_MouseDown" Height="200" Width="200">
-                                            <Canvas Height="200" Width="200"  Name="cv" MouseDown="cv_MouseDown">
-                                                <TextBlock     
-                               Height="20"
-                               Width="80"                       
-                               FontSize="12"
-                               Foreground="Red"
-                               Text="{Binding GiaTien}"
-                               Margin="100,0,0,0" MouseDown="txb_MouseDown" >
+                                            <Canvas Height="250" Width="250"  Name="cv" MouseDown="cv_MouseDown">
+                                                <TextBlock Height="20" Width="80" FontSize="12" Foreground="Red" Text="{Binding GiaBanSanPham}" Margin="100,0,0,0" MouseDown="txb_MouseDown"></TextBlock>
+                                                <Image   Height="180"  Width="230" Margin="0,20,0,10" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
 
-                                                </TextBlock>
-
-                                                <Image Source="{Binding TenFile}" 
-                               Height="150"
-                               Width="200"
-                                   Margin="0,20,0,10" MouseLeftButtonUp="Image_MouseLeftButtonUp">
-                                                </Image>
-
-                                                <TextBlock 
-                               Text="{Binding TenFile}"
-                               FontSize="13"
-                               FontWeight="Bold"
-                               TextWrapping="Wrap"
-                               Margin="30,180,10,0" MouseDown="TextBlock_MouseDown">
-                                                </TextBlock>
-
-
+                                                <TextBlock Text="{Binding TenSanPham}" FontSize="13" FontWeight="Bold" TextWrapping="Wrap" Margin="30,180,10,0" MouseDown="TextBlock_MouseDown"></TextBlock>
                                             </Canvas>
                                         </StackPanel>
                                     </DataTemplate>
@@ -80,8 +68,8 @@
                                 </ListView.ItemsPanel>
                             </ListView>
                         </Grid>
-
                     </ScrollViewer>
+
                 </Grid>
             </Canvas>
         </UserControl>

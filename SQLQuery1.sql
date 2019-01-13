@@ -1,4 +1,5 @@
-﻿CREATE DATABASE QuanLyBanHang
+﻿drop database QuanLyBanHang
+CREATE DATABASE QuanLyBanHang
 GO
 USE QuanLyBanHang
 GO
@@ -19,7 +20,7 @@ CREATE TABLE SANPHAM
 (
 MaSanPham int identity(0,1) not null,
 TenSanPham nvarchar(45) not null,
-TenFile nvarchar(45) not null,
+FileAnh image null,
 GiaBanSanPham bigint not null,
 GiaMuaSanPham bigint not null,
 TinhTrang int not null,
@@ -60,6 +61,7 @@ constraint PK_DONHANG primary key(MaDonHang)
 create table KHUYENMAI
 (
 MaKhuyenMai int identity(0,1) not null,
+TenKhuyenMai nvarchar(45) not null,
 MaSanPham int not null,
 PhanTram int not null,
 NgayBatDau datetime not null,
@@ -85,20 +87,45 @@ insert into LOAISANPHAM values(N'Dầu gội đầu')
 insert into LOAISANPHAM values(N'Nước giặc')
 insert into LOAISANPHAM values(N'Nước mắm')
 
+insert into SANPHAM values (N'Dầu ăn Neptune',null,130000,100000,1,0,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\DauAnNeptune.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Dầu ăn Neptune'
 
-
-insert into SANPHAM values (N'Dầu ăn Neptune','DauAnNeptune.jpg',130000,100000,1,0,20)
 insert into SANPHAM values (N'Dầu ăn Ranee','DauAnRanee.jpg',30000,27000,1,0,30)
-insert into SANPHAM values (N'Dầu gội HeadAndShoulders','DauGoiDauHeadAndShoulders.jpg',50000,45000,1,1,50)
-insert into SANPHAM values (N'Dầu gội Pantene','DauGoiDauPantene.jpg',48000,40000,1,1,40)
-insert into SANPHAM values (N'Dầu gội HeadAndShoulders','DauGoiDauHeadAndShoulders.jpg',50000,45000,1,1,50)
-insert into SANPHAM values (N'Dầu gội Thorakao','DauGoiDauThorakao.jpg',35000,30000,1,1,50)
-insert into SANPHAM values (N'Nước giặc Ariel','NuocGiacAriel.jpg',180000,150000,1,2,40)
-insert into SANPHAM values (N'Nước giặc Caremore','NuocGiacCaremore.jpg',170000,160000,1,2,20)
-insert into SANPHAM values (N'Nước mắm Đệ nhị','NuocMamDeNhi.jpg',170000,160000,1,3,20)
-insert into SANPHAM values (N'Nước mắm Hạnh Phúc','NuocMamHanhPhuc.jpg',30000,26000,1,3,20)
-insert into SANPHAM values (N'Nước mắm Kakom','NuocMamKakom.jpg',24000,20000,1,3,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\DauAnRanee.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Dầu ăn Ranee'
 
+insert into SANPHAM values (N'Dầu gội HeadAndShoulders','DauGoiDauHeadAndShoulders.jpg',50000,45000,1,1,50)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\DauGoiDauHeadAndShoulders.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Dầu gội HeadAndShoulders'
+
+insert into SANPHAM values (N'Dầu gội Pantene','DauGoiDauPantene.jpg',48000,40000,1,1,40)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\DauGoiDauPantene.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Dầu gội Pantene'
+
+insert into SANPHAM values (N'Dầu gội Thorakao','DauGoiDauThorakao.jpg',35000,30000,1,1,50)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\DauGoiDauThorakao.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Dầu gội Thorakao'
+
+insert into SANPHAM values (N'Nước giặc Ariel','NuocGiacAriel.jpg',180000,150000,1,2,40)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\NuocGiacAriel.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Nước giặc Ariel'
+
+insert into SANPHAM values (N'Nước giặc Caremore','NuocGiacCaremore.jpg',170000,160000,1,2,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\NuocGiacCaremore.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Nước giặc Caremore'
+
+insert into SANPHAM values (N'Nước mắm Đệ nhị','NuocMamDeNhi.jpg',170000,160000,1,3,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\NuocMamDeNhi.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Nước mắm Đệ nhị'
+
+insert into SANPHAM values (N'Nước mắm Hạnh Phúc','NuocMamHanhPhuc.jpg',30000,26000,1,3,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\NuocMamHanhPhuc.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Nước mắm Hạnh Phúc'
+
+insert into SANPHAM values (N'Nước mắm Kakom','NuocMamKakom.jpg',24000,20000,1,3,20)
+update SANPHAM set FileAnh=(SELECT FileAnh FROM   OPENROWSET(BULK 'F:\Images\NuocMamKakom.jpg', SINGLE_BLOB) AS x) WHERE  TenSanPham = N'Nước mắm Kakom'
+
+
+insert into KHUYENMAI values (N'Khuyen mai tet 2019',0,46,'01-12-19','02-06-19')
+insert into KHUYENMAI values (N'Khuyen mai tet 2019',1,46,'01-12-19','02-06-19')
+insert into KHUYENMAI values (N'Khuyen mai tet 2019',2,46,'01-12-19','02-06-19')
+insert into KHUYENMAI values (N'Khuyen mai tet 2019',3,46,'01-12-19','02-06-19')
+insert into KHUYENMAI values (N'Khuyen mai giang sinh 2018',1,46,'12-16-18','12-27-18')
+insert into KHUYENMAI values (N'Khuyen mai giang sinh 2018',2,46,'12-16-18','12-27-18')
+insert into KHUYENMAI values (N'Khuyen mai giang sinh 2018',3,46,'12-16-18','12-27-18')
+insert into KHUYENMAI values (N'Khuyen mai giang sinh 2018',4,46,'12-16-18','12-27-18')
 
 
 

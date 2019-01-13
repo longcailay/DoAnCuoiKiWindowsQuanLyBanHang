@@ -17,7 +17,7 @@ namespace DAL
         /// <returns></returns>
         public DataTable getSanPham()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select TenSanPham,TenFile,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham, from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham and TinhTrang=1", _conn);
+            SqlDataAdapter da = new SqlDataAdapter("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham and TinhTrang=1", _conn);
             DataTable dtSanPham = new DataTable();
             da.Fill(dtSanPham);
             return dtSanPham;

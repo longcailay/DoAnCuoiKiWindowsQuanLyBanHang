@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Data;
 using DTO;
 using BUS;
@@ -24,6 +26,7 @@ namespace _1612205
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -31,32 +34,15 @@ namespace _1612205
         }
 
         #region Usercontrol SanPham
-        BUS_SanPham BUS_SP = new BUS_SanPham();
+        BUS_SanPham BUS_SP = new BUS_SanPham();        
+        public List<CSanPham> LSanPham = new List<CSanPham>();     
+               
 
-        private void btnSanPham_Click(object sender, RoutedEventArgs e)
-        {
-            uscBaoCao.Visibility = Visibility.Collapsed;
-            uscGiaoDich.Visibility = Visibility.Collapsed;
-            uscSanPham.Visibility = Visibility.Visible;
-            
-            
-            
-            
-            
-        }
-        public void CapNhatGridViewSanPham(ListView lsvSanPham)
-        {
-           
-            //= BUS_SP.getSanPham();
-           
-        }
-        
-        
         #region Lop san pham
         public class CSanPham
         {
             private string tenSanPham;
-            private string tenFile;
+            private byte[] fileAnh;
             private int giaBanSanPham;
             private int soLuong;
             private int phanTram;
@@ -70,10 +56,10 @@ namespace _1612205
                 set { tenSanPham = value; }
                 get { return tenSanPham; }
             }
-            public string TenFile
+            public byte[] FileAnh
             {
-                set { tenFile = value; }
-                get { return tenFile; }
+                set { FileAnh = value; }
+                get { return FileAnh; }
             }
             public int GiaBanSanPham
             {
@@ -110,29 +96,87 @@ namespace _1612205
                 set { maLoaiSanPham = value; }
                 get { return maLoaiSanPham; }
             }
+            public CSanPham(string TenSanPham,byte[] FileAnh, int GiaBanSanPham,int SoLuong, int PhanTram,DateTime NgayBatDau,DateTime NgayKetThuc,int MaSanPham, int MaLoaiSanPham)
+            {
+                tenSanPham = TenSanPham;
+                fileAnh = FileAnh;
+                giaBanSanPham = GiaBanSanPham;
+                soLuong = SoLuong;
+                phanTram = PhanTram;
+                ngayBatDau = NgayBatDau;
+                ngayKetThuc = NgayKetThuc;
+                maSanPham = MaSanPham;
+                maLoaiSanPham = MaLoaiSanPham;
+            }
+
         }
         #endregion
 
-
-        
-        #endregion
-
-
-
-        private void btnBaoCao_Click(object sender, RoutedEventArgs e)
+        public void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham)
         {
-            uscBaoCao.Visibility = Visibility.Visible;
-            uscGiaoDich.Visibility = Visibility.Collapsed;
-            uscSanPham.Visibility = Visibility.Collapsed;
+            DataTable dttbSP = BUS_SP.getSanPham();
+            for(int i = 0; i < dttbSP.Rows.Count; i++)//dttbSP.Rows.Count
+            {
+                 string tenSP = dttbSP.Rows[i][0].ToString();
+                 byte[]  fileAnh = (byte[])dttbSP.Rows[i][1];
+                 int giaBanSP;
+                 Int32.TryParse(dttbSP.Rows[i][2].ToString(),out giaBanSP);
+                 int soLuong;
+                 Int32.TryParse( dttbSP.Rows[i][3].ToString(),out soLuong);
+                 int phanTram;
+                 Int32.TryParse(dttbSP.Rows[i][4].ToString(), out phanTram);
+                 DateTime ngayBatDau;
+                 DateTime.TryParse(dttbSP.Rows[i][5].ToString(),out ngayBatDau);
+                 DateTime ngayKetThuc;
+                 DateTime.TryParse(dttbSP.Rows[i][6].ToString(), out ngayKetThuc);
+                 int maSP;
+                 Int32.TryParse(dttbSP.Rows[i][7].ToString(),out maSP);
+                 int maLoaiSP;
+                 Int32.TryParse(dttbSP.Rows[i][8].ToString(),out maLoaiSP);
+                 MangCacSanPham.Add(new CSanPham(tenSP, fileAnh, giaBanSP, soLuong, phanTram, ngayBatDau, ngayKetThuc, maSP, maLoaiSP));             
+             
+               
+            }            
         }
 
-        private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
+       /* public class ByteToImageConverter : IValueConverter
+        {
+            public BitmapImage ConvertByteArrayToBitMapImage(byte[] imageByteArray)
+            {
+                BitmapImage img = new BitmapImage();
+                using (MemoryStream memStream = new MemoryStream(imageByteArray))
+                {
+                    
+                    img.SetSource(memStream);
+                }
+                return img;
+            }
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                BitmapImage img = new BitmapImage();
+                if (value != null)
+                {
+                    img = this.ConvertByteArrayToBitMapImage(value as byte[]);
+                }
+                return img;
+            }
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return null;
+            }
+        }*/
+
+        private void btnSanPham_Click(object sender, RoutedEventArgs e)
         {
             uscBaoCao.Visibility = Visibility.Collapsed;
-            uscGiaoDich.Visibility = Visibility.Visible;
-            uscSanPham.Visibility = Visibility.Collapsed;
-        }
+            uscGiaoDich.Visibility = Visibility.Collapsed;
+            uscSanPham.Visibility = Visibility.Visible;
 
+        }
+        public DataTable loadSanPham()
+        {
+            return BUS_SP.getSanPham();
+        }
         private void lsvProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //lsvProduct.ItemsSource=getS
@@ -166,7 +210,31 @@ namespace _1612205
         private void btnThemSanPham_Click(object sender, RoutedEventArgs e)
         {
             DataTable m = BUS_SP.getSanPham();
-            MessageBox.Show(m.Rows[1][1].ToString());
+            MessageBox.Show(m.Rows[10][1].ToString());
         }
+        private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
+        {
+            TaoMangCacSanPham(ref LSanPham);
+            lsvProduct.ItemsSource = LSanPham;
+        }
+        #endregion
+
+
+
+        private void btnBaoCao_Click(object sender, RoutedEventArgs e)
+        {
+            uscBaoCao.Visibility = Visibility.Visible;
+            uscGiaoDich.Visibility = Visibility.Collapsed;
+            uscSanPham.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
+        {
+            uscBaoCao.Visibility = Visibility.Collapsed;
+            uscGiaoDich.Visibility = Visibility.Visible;
+            uscSanPham.Visibility = Visibility.Collapsed;
+        }
+
+        
     }
 }

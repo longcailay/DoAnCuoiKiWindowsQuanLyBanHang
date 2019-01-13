@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
+using DTO;
+using System.Xml;
+
 namespace DAL
 {
     public class  DAL_DBConnect
