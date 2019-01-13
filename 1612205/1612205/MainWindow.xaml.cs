@@ -43,6 +43,7 @@ namespace _1612205
         {
             private string tenSanPham;
             private byte[] fileAnh;
+            private BitmapImage fileAnhBitMap;
             private int giaBanSanPham;
             private int soLuong;
             private int phanTram;
@@ -60,6 +61,12 @@ namespace _1612205
             {
                 set { FileAnh = value; }
                 get { return FileAnh; }
+            }
+
+            public BitmapImage FileAnhBitMap
+            {
+                set { FileAnhBitMap = value; }
+                get { return FileAnhBitMap; }
             }
             public int GiaBanSanPham
             {
@@ -99,7 +106,7 @@ namespace _1612205
             public CSanPham(string TenSanPham,byte[] FileAnh, int GiaBanSanPham,int SoLuong, int PhanTram,DateTime NgayBatDau,DateTime NgayKetThuc,int MaSanPham, int MaLoaiSanPham)
             {
                 tenSanPham = TenSanPham;
-                fileAnh = FileAnh;
+                fileAnh = FileAnh;                
                 giaBanSanPham = GiaBanSanPham;
                 soLuong = SoLuong;
                 phanTram = PhanTram;
@@ -111,7 +118,29 @@ namespace _1612205
 
         }
         #endregion
+        #region xu ly Image
 
+            
+
+        public BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(imageData))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
+        }
+
+        #endregion
         public void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham)
         {
             DataTable dttbSP = BUS_SP.getSanPham();
@@ -132,39 +161,11 @@ namespace _1612205
                  int maSP;
                  Int32.TryParse(dttbSP.Rows[i][7].ToString(),out maSP);
                  int maLoaiSP;
-                 Int32.TryParse(dttbSP.Rows[i][8].ToString(),out maLoaiSP);
-                 MangCacSanPham.Add(new CSanPham(tenSP, fileAnh, giaBanSP, soLuong, phanTram, ngayBatDau, ngayKetThuc, maSP, maLoaiSP));             
-             
-               
+                 Int32.TryParse(dttbSP.Rows[i][8].ToString(),out maLoaiSP);               
+                 MangCacSanPham.Add(new CSanPham(tenSP,fileAnh, giaBanSP, soLuong, phanTram, ngayBatDau, ngayKetThuc, maSP, maLoaiSP));
+                                
             }            
-        }
-
-       /* public class ByteToImageConverter : IValueConverter
-        {
-            public BitmapImage ConvertByteArrayToBitMapImage(byte[] imageByteArray)
-            {
-                BitmapImage img = new BitmapImage();
-                using (MemoryStream memStream = new MemoryStream(imageByteArray))
-                {
-                    
-                    img.SetSource(memStream);
-                }
-                return img;
-            }
-            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                BitmapImage img = new BitmapImage();
-                if (value != null)
-                {
-                    img = this.ConvertByteArrayToBitMapImage(value as byte[]);
-                }
-                return img;
-            }
-            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            {
-                return null;
-            }
-        }*/
+        }       
 
         private void btnSanPham_Click(object sender, RoutedEventArgs e)
         {
@@ -192,11 +193,7 @@ namespace _1612205
 
         }
 
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
+       
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -209,8 +206,8 @@ namespace _1612205
 
         private void btnThemSanPham_Click(object sender, RoutedEventArgs e)
         {
-            DataTable m = BUS_SP.getSanPham();
-            MessageBox.Show(m.Rows[10][1].ToString());
+            WinThemSP winThemSP = new WinThemSP();
+            winThemSP.ShowDialog();
         }
         private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
         {

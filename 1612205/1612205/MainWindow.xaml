@@ -50,13 +50,12 @@
                             </Grid.RowDefinitions>
                             <ListView x:Name="lsvProduct" Grid.Row="1" MouseDoubleClick="lsvProduct_MouseDoubleClick">
                                 <ListView.ItemTemplate>
-                                    <DataTemplate >
+                                    <DataTemplate>
                                         <StackPanel  MouseDown="st_MouseDown" Height="200" Width="200">
                                             <Canvas Height="250" Width="250"  Name="cv" MouseDown="cv_MouseDown">
-                                                <TextBlock Height="20" Width="80" FontSize="12" Foreground="Red" Text="{Binding GiaBanSanPham}" Margin="100,0,0,0" MouseDown="txb_MouseDown"></TextBlock>
-                                                <Image   Height="180"  Width="230" Margin="0,20,0,10" MouseLeftButtonUp="Image_MouseLeftButtonUp"></Image>
-
-                                                <TextBlock Text="{Binding TenSanPham}" FontSize="13" FontWeight="Bold" TextWrapping="Wrap" Margin="30,180,10,0" MouseDown="TextBlock_MouseDown"></TextBlock>
+                                                <TextBlock Canvas.Left="150" Canvas.Top="5" Height="20" Width="80" FontSize="12" Foreground="Red" Text="{Binding GiaBanSanPham}"  MouseDown="txb_MouseDown"></TextBlock>
+                                                <TextBlock Canvas.Left="30" Canvas.Top="20" Height="130" Width="200" Background="Blue" Text="465"></TextBlock>
+                                                <TextBlock Canvas.Left="80" Canvas.Top="160" Height="25" Width="100" Text="gfjkhkjhgj" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" MouseDown="TextBlock_MouseDown"></TextBlock>
                                             </Canvas>
                                         </StackPanel>
                                     </DataTemplate>
@@ -76,7 +75,7 @@
         <!--#endregion-->
 
         <!--#region User control Baocao-->
-        <UserControl Name="uscBaoCao" Visibility="Collapsed" Background="Blue" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
+        <UserControl Name="uscBaoCao"  Background="Blue" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590" d:IsHidden="True">
             <Canvas>
                 <StackPanel Name="stpBaoCaoButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
                     <Button Name="btnBaoCaoSanPham" Width="200" Content="Sản phẩm"></Button>
@@ -87,7 +86,7 @@
         <!--#endregion-->
 
 
-        <UserControl Name="uscGiaoDich" Visibility="Collapsed" Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
+        <UserControl Name="uscGiaoDich"  Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590" d:IsHidden="True">
             <Label Content="usercontrol giao dịch"></Label>
         </UserControl>
     </Canvas>

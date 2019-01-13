@@ -10,3 +10,9 @@ F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.csprojA
 F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.dll
 F:\ĐoAnWindows\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.pdb
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\bin\Debug\DTO.dll
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\bin\Debug\DTO.pdb
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.dll
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\DTO\obj\Debug\DTO.pdb
