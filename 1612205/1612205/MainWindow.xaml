@@ -41,7 +41,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ScrollViewer Grid.ColumnSpan="2" Margin="0,0,15,0" RenderTransformOrigin="0.509,0.503">
+                    <ScrollViewer Grid.ColumnSpan="2" Margin="0,0,15,0" RenderTransformOrigin="0.509,0.503" >
                         <Grid VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -53,9 +53,9 @@
                                     <DataTemplate>
                                         <StackPanel  MouseDown="st_MouseDown" Height="200" Width="200">
                                             <Canvas Height="250" Width="250"  Name="cv" MouseDown="cv_MouseDown">
-                                                <TextBlock Canvas.Left="150" Canvas.Top="5" Height="20" Width="80" FontSize="12" Foreground="Red" Text="{Binding GiaBanSanPham}"  MouseDown="txb_MouseDown"></TextBlock>
-                                                <TextBlock Canvas.Left="30" Canvas.Top="20" Height="130" Width="200" Background="Blue" Text="465"></TextBlock>
-                                                <TextBlock Canvas.Left="80" Canvas.Top="160" Height="25" Width="100" Text="gfjkhkjhgj" FontSize="15" FontWeight="Bold" TextWrapping="Wrap" MouseDown="TextBlock_MouseDown"></TextBlock>
+                                                <TextBlock Canvas.Left="120" Canvas.Top="5" Height="20" Width="80" FontSize="12" Foreground="Red"   MouseDown="txb_MouseDown"> <Run Text="{Binding GiaBanSanPham}"></Run> <Run Text="VND"></Run> </TextBlock>
+                                                <Image Canvas.Left="30" Canvas.Top="20" Height="130" Width="200" Source="{Binding FileAnh}"></Image>
+                                                <TextBlock Canvas.Left="30" Canvas.Top="160" Height="25" Width="250" Text="{Binding TenSanPham}" FontSize="12" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap" MouseDown="TextBlock_MouseDown"></TextBlock>
                                             </Canvas>
                                         </StackPanel>
                                     </DataTemplate>

@@ -10,7 +10,7 @@ namespace DTO
     {
         private int _maSanPham;
         private string _tenSanPham;
-        private byte[] _fileAnh;
+        private string _fileAnh;
         private int _giaBanSanPham;
         private int _giaMuaSanPham;
         private int _tinhTrang;
@@ -39,7 +39,7 @@ namespace DTO
                 _tenSanPham = value;
             }
         }
-        public byte[] TENFILE
+        public string TENFILE
         {
             get
             {
@@ -113,7 +113,7 @@ namespace DTO
         {
 
         }
-        public DTO_SanPham(int maSanPham,string tenSanPham,byte[] fileAnh,int giaBanSanPham,int giaMuaSanPham,int tinhTrang, int maLoaiSanPham, int soLuong)
+        public DTO_SanPham(int maSanPham,string tenSanPham,string fileAnh,int giaBanSanPham,int giaMuaSanPham,int tinhTrang, int maLoaiSanPham, int soLuong)
         {
             this.MASANPHAM = maSanPham;
             this.TENSANPHAM = tenSanPham;

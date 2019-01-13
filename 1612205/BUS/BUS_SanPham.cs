@@ -13,10 +13,14 @@ namespace BUS
     {
         DAL_SanPham dalSanPham = new DAL_SanPham();
 
-
         public DataTable getSanPham()
         {
             return dalSanPham.getSanPham();
+        }
+       
+        public bool themSanPham(DTO_SanPham SP)
+        {
+            return dalSanPham.themSanPham(SP);
         }
     }
 }

@@ -42,8 +42,8 @@ namespace _1612205
         public class CSanPham
         {
             private string tenSanPham;
-            private byte[] fileAnh;
-            private BitmapImage fileAnhBitMap;
+            private string fileAnh;
+            //private BitmapImage fileAnhBitMap;
             private int giaBanSanPham;
             private int soLuong;
             private int phanTram;
@@ -57,10 +57,10 @@ namespace _1612205
                 set { tenSanPham = value; }
                 get { return tenSanPham; }
             }
-            public byte[] FileAnh
+            public string FileAnh
             {
-                set { FileAnh = value; }
-                get { return FileAnh; }
+                set { fileAnh = value; }
+                get { return fileAnh; }
             }
 
             public BitmapImage FileAnhBitMap
@@ -103,7 +103,7 @@ namespace _1612205
                 set { maLoaiSanPham = value; }
                 get { return maLoaiSanPham; }
             }
-            public CSanPham(string TenSanPham,byte[] FileAnh, int GiaBanSanPham,int SoLuong, int PhanTram,DateTime NgayBatDau,DateTime NgayKetThuc,int MaSanPham, int MaLoaiSanPham)
+            public CSanPham(string TenSanPham,string FileAnh, int GiaBanSanPham,int SoLuong, int PhanTram,DateTime NgayBatDau,DateTime NgayKetThuc,int MaSanPham, int MaLoaiSanPham)
             {
                 tenSanPham = TenSanPham;
                 fileAnh = FileAnh;                
@@ -120,9 +120,25 @@ namespace _1612205
         #endregion
         #region xu ly Image
 
-            
+        /*
 
-        public BitmapImage LoadImage(byte[] imageData)
+        image = (byte[]) (editProduct.Rows[0][9]);
+            if (image == null)
+            {
+                picPhone.Image = null;
+            }
+            else
+            {
+                String sProfile = Convert.ToBase64String(image);
+
+    var stream = new MemoryStream(Convert.FromBase64String(sProfile));
+    picPhone.Image = Image.FromStream(stream);
+            }
+
+    */
+    
+
+public BitmapImage LoadImage(byte[] imageData)
         {
             if (imageData == null || imageData.Length == 0) return null;
             var image = new BitmapImage();
@@ -147,7 +163,7 @@ namespace _1612205
             for(int i = 0; i < dttbSP.Rows.Count; i++)//dttbSP.Rows.Count
             {
                  string tenSP = dttbSP.Rows[i][0].ToString();
-                 byte[]  fileAnh = (byte[])dttbSP.Rows[i][1];
+                 string  fileAnh = dttbSP.Rows[i][1].ToString();
                  int giaBanSP;
                  Int32.TryParse(dttbSP.Rows[i][2].ToString(),out giaBanSP);
                  int soLuong;
@@ -163,7 +179,7 @@ namespace _1612205
                  int maLoaiSP;
                  Int32.TryParse(dttbSP.Rows[i][8].ToString(),out maLoaiSP);               
                  MangCacSanPham.Add(new CSanPham(tenSP,fileAnh, giaBanSP, soLuong, phanTram, ngayBatDau, ngayKetThuc, maSP, maLoaiSP));
-                                
+                              
             }            
         }       
 
@@ -232,6 +248,6 @@ namespace _1612205
             uscSanPham.Visibility = Visibility.Collapsed;
         }
 
-        
+       
     }
 }

@@ -22,7 +22,34 @@ namespace DAL
             da.Fill(dtSanPham);
             return dtSanPham;
         }
+        public bool themSanPham(DTO_SanPham SP)
+        {
+            try
+            {
+                // Ket noi
+                _conn.Open();                
+                // Query string 
+                string SQL = string.Format("INSERT INTO SANPHAM(TenSanPham,FileAnh,GiaBanSanPham,GiaMuaSanPham,TinhTrang,MaLoaiSanPham,SoLuong) VALUES(N'{0}',N'{1}','{2}','{3}','{4}','{5}','{6}')", SP.TENSANPHAM, SP.TENFILE, SP.GIABANSANPHAM, SP.GIAMUASANPHAM, SP.TINHTRANG, SP.MALOAISANPHAM,SP.SOLUONG);
 
-        
+                // Command
+                SqlCommand cmd = new SqlCommand(SQL, _conn);
+
+                // Query và kiểm tra
+                if (cmd.ExecuteNonQuery() > 0)
+                    return true;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                // Dong ket noi
+                _conn.Close();
+            }
+            return false;
+        }
+
+
     }
 }
