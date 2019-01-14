@@ -35,15 +35,13 @@ namespace _1612205
 
         #region Usercontrol SanPham
         BUS_SanPham BUS_SP = new BUS_SanPham();        
-        public List<CSanPham> LSanPham = new List<CSanPham>();     
-               
+        public List<CSanPham> LSanPham = new List<CSanPham>();        
 
         #region Lop san pham
         public class CSanPham
         {
             private string tenSanPham;
-            private string fileAnh;
-            //private BitmapImage fileAnhBitMap;
+            private string fileAnh;           
             private int giaBanSanPham;
             private int soLuong;
             private int phanTram;
@@ -61,13 +59,7 @@ namespace _1612205
             {
                 set { fileAnh = value; }
                 get { return fileAnh; }
-            }
-
-            public BitmapImage FileAnhBitMap
-            {
-                set { FileAnhBitMap = value; }
-                get { return FileAnhBitMap; }
-            }
+            }            
             public int GiaBanSanPham
             {
                 set { giaBanSanPham = value; }
@@ -118,45 +110,7 @@ namespace _1612205
 
         }
         #endregion
-        #region xu ly Image
-
-        /*
-
-        image = (byte[]) (editProduct.Rows[0][9]);
-            if (image == null)
-            {
-                picPhone.Image = null;
-            }
-            else
-            {
-                String sProfile = Convert.ToBase64String(image);
-
-    var stream = new MemoryStream(Convert.FromBase64String(sProfile));
-    picPhone.Image = Image.FromStream(stream);
-            }
-
-    */
-    
-
-public BitmapImage LoadImage(byte[] imageData)
-        {
-            if (imageData == null || imageData.Length == 0) return null;
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(imageData))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            image.Freeze();
-            return image;
-        }
-
-        #endregion
+       
         public void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham)
         {
             DataTable dttbSP = BUS_SP.getSanPham();
@@ -188,7 +142,7 @@ public BitmapImage LoadImage(byte[] imageData)
             uscBaoCao.Visibility = Visibility.Collapsed;
             uscGiaoDich.Visibility = Visibility.Collapsed;
             uscSanPham.Visibility = Visibility.Visible;
-
+            uscSanPham_Load();
         }
         public DataTable loadSanPham()
         {
@@ -225,10 +179,15 @@ public BitmapImage LoadImage(byte[] imageData)
             WinThemSP winThemSP = new WinThemSP();
             winThemSP.ShowDialog();
         }
-        private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
-        {
+        public void uscSanPham_Load()
+        {          
             TaoMangCacSanPham(ref LSanPham);
             lsvProduct.ItemsSource = LSanPham;
+        }
+        private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
+        {
+            //TaoMangCacSanPham(ref LSanPham);
+            //lsvProduct.ItemsSource = LSanPham;
         }
         #endregion
 

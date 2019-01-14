@@ -17,7 +17,10 @@ namespace BUS
         {
             return dalSanPham.getSanPham();
         }
-       
+       public DataTable getLoaiSanPham()
+        {
+            return dalSanPham.getLoaiSanPham();
+        }
         public bool themSanPham(DTO_SanPham SP)
         {
             return dalSanPham.themSanPham(SP);

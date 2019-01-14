@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1612205"
         mc:Ignorable="d"
-        Title="WinThemSP" VerticalAlignment="Center" Height="400" Width="600" ResizeMode="NoResize">
+        Title="WinThemSP" VerticalAlignment="Center" Height="400" Width="600" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Canvas>
         <Canvas Width="302" Height="351" Canvas.Top="10" Canvas.Left="10">
@@ -14,18 +14,23 @@
             <Label  Content="Giá bán" Canvas.Left="10" Canvas.Top="160"/>
             <Label  Content="Số lượng" Canvas.Left="10" Canvas.Top="210"/>
             <Label  Content="Loại" Canvas.Left="10" Canvas.Top="260"/>
-            <TextBox Name="txtTenSanPham"  Canvas.Left="100" Canvas.Top="60" Width="140"></TextBox>
-            <TextBox Name="txtGiaMua" Canvas.Left="100" Canvas.Top="110" Width="140"></TextBox>
-            <TextBox Name="txtGiaBan" Canvas.Left="100" Canvas.Top="160" Width="140"></TextBox>
-            <TextBox Name="txtSoLuong" Canvas.Left="100" Canvas.Top="210" Width="140"></TextBox>
-            <ComboBox Canvas.Left="100" Canvas.Top="260" Width="140"></ComboBox>
+            <TextBox Name="txbTenSanPham"  Canvas.Left="100" Canvas.Top="60" Width="140"></TextBox>
+            <TextBox Name="txbGiaMua" Canvas.Left="100" Canvas.Top="110" Width="140"></TextBox>
+            <TextBox Name="txbGiaBan" Canvas.Left="100" Canvas.Top="160" Width="140"></TextBox>
+            <TextBox Name="txbSoLuong" Canvas.Left="100" Canvas.Top="210" Width="140"></TextBox>
+            <ComboBox Name="cbxLoaiSP" Canvas.Left="100" Canvas.Top="260" Width="140" 
+                      DisplayMemberPath="Name"
+                      SelectedValuePath="id"
+                      ItemsSource="{Binding myDataTable}" 
+                      SelectedValue="{Binding theID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Loaded="cbxLoaiSP_Loaded" SelectionChanged="cbxLoaiSP_SelectionChanged">                
+            </ComboBox>
         </Canvas>
         <Canvas Canvas.Left="334" Width="235" Height="351" Canvas.Top="10">
             <Canvas Width="181" Height="134" Canvas.Top="76" Canvas.Left="31" Background="AliceBlue">
                 <Button Content="Add" Height="25" Width="28" InkCanvas.Left="20" Click="Button_Click" Panel.ZIndex="1" ></Button>
-                <Image Name="ImFileAnh" Source="f:\Images\NuocMamPhuQuoc.jpg" Width="181" Height="134" />
+                <Image Name="ImFileAnh" Width="181" Height="134" />
             </Canvas>
-            <Button Width="80" Height="20" Content="Thêm" Canvas.Left="31" Canvas.Top="250" RenderTransformOrigin="1.43,0.989"></Button>
+            <Button Name="btnThem" Width="80" Height="20" Content="Thêm" Canvas.Left="31" Canvas.Top="250" RenderTransformOrigin="1.43,0.989" Click="btnThem_Click"></Button>
             <Button Width="80" Height="20" Content="Hủy" Canvas.Left="138" Canvas.Top="250" RenderTransformOrigin="-1.826,1.803"></Button>
         </Canvas>
     </Canvas>

@@ -22,6 +22,14 @@ namespace DAL
             da.Fill(dtSanPham);
             return dtSanPham;
         }
+
+        public DataTable getLoaiSanPham()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("select TenLoaiSanPham,MaLoaiSanPham from LOAISANPHAM", _conn);
+            DataTable dtLoaiSanPham = new DataTable();
+            da.Fill(dtLoaiSanPham);
+            return dtLoaiSanPham;
+        }
         public bool themSanPham(DTO_SanPham SP)
         {
             try
