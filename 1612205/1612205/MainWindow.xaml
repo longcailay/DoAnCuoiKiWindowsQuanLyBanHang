@@ -32,8 +32,13 @@
             <Canvas>
                 <StackPanel Name="stpSanPhamButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
                     <Button Name="btnThemSanPham" Width="200" Content="Thêm Sản Phẩm" Click="btnThemSanPham_Click"/>
-                    <Button Name="btnLocSanPham" Width="200" Content="Lọc"></Button>
-                    <Button Name="btnTimKiemSanPham" Width="200" Content="Tìm kiếm"></Button>
+                    <StackPanel Name="stpLocSanPham" Width="300" >
+                        <Canvas>
+                            <Label Content="Tìm kiếm" FontSize="20" VerticalAlignment="Center" Height="59" Width="130" Canvas.Top="20"/>
+                        
+                        </Canvas>
+                    </StackPanel>
+                    <Button Name="btnTimKiemSanPham" Width="300" Content="Tìm kiếm"></Button>
                 </StackPanel>
                 <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510" Loaded="gridViewSanPham_Loaded">
                     <Grid.ColumnDefinitions>
@@ -51,9 +56,10 @@
                             <ListView x:Name="lsvProduct" Grid.Row="1" MouseDoubleClick="lsvProduct_MouseDoubleClick">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel  MouseDown="st_MouseDown" Height="200" Width="200">
+                                        <StackPanel MouseDown="st_MouseDown" Height="200" Width="200">
                                             <Canvas Height="250" Width="250"  Name="cv" MouseDown="cv_MouseDown">
-                                                <TextBlock Canvas.Left="120" Canvas.Top="5" Height="20" Width="80" FontSize="12" Foreground="Red"   MouseDown="txb_MouseDown"> <Run Text="{Binding GiaBanSanPham}"></Run> <Run Text="VND"></Run> </TextBlock>
+                                                <TextBlock Panel.ZIndex="1" FontSize="1" Text="{Binding MaSanPham}" Canvas.Left="0" Canvas.Top="0" Height="250" Width="250" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"></TextBlock>
+                                                <TextBlock Canvas.Left="120" Canvas.Top="5" Height="20" Width="80" FontSize="12" Foreground="Red"   MouseDown="txb_MouseDown"> <Run Text="{Binding GiaBanSanPham}"></Run> <Run Text="VND"></Run></TextBlock>
                                                 <Image Canvas.Left="30" Canvas.Top="20" Height="130" Width="200" Source="{Binding FileAnh}"></Image>
                                                 <TextBlock Canvas.Left="30" Canvas.Top="160" Height="25" Width="250" Text="{Binding TenSanPham}" FontSize="12" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap" MouseDown="TextBlock_MouseDown"></TextBlock>
                                             </Canvas>

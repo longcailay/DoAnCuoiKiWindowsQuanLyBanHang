@@ -31,7 +31,7 @@ namespace _1612205
         string imgLoc1,imgLoc2="";  //cái 1 là để kiểm tra và gán vào image source, cái 2 để ghi lên database     
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ImFileAnh.Visibility = Visibility.Visible;
+            
             try
             {
                 OpenFileDialog dlg = new OpenFileDialog();
@@ -57,7 +57,8 @@ namespace _1612205
                             temp += imgLoc1[i].ToString();
                         }
                         
-                    }                    
+                    }
+                    ImFileAnh.Visibility = Visibility.Visible;
                     var converter = new ImageSourceConverter();
                     ImFileAnh.Source = (ImageSource)converter.ConvertFromString(temp);
                 }
@@ -71,7 +72,7 @@ namespace _1612205
         {
             txbGiaBan.Text = txbGiaMua.Text = txbSoLuong.Text = txbTenSanPham.Text = "";
             cbxLoaiSP.Text = "";
-            cbxLoaiSP.Visibility = Visibility.Collapsed;          
+            ImFileAnh.Visibility = Visibility.Collapsed;         
         }
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
@@ -137,6 +138,11 @@ namespace _1612205
             cbxLoaiSP.ItemsSource = dataTable.DefaultView;
             cbxLoaiSP.DisplayMemberPath = "TenLoaiSanPham";
             cbxLoaiSP.SelectedValuePath = "MaLoaiSanPham";
+        }
+
+        private void btnHuy_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void cbxLoaiSP_SelectionChanged(object sender, SelectionChangedEventArgs e)

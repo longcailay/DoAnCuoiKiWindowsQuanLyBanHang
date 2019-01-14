@@ -31,7 +31,7 @@
                 <Image Name="ImFileAnh" Width="181" Height="134" />
             </Canvas>
             <Button Name="btnThem" Width="80" Height="20" Content="Thêm" Canvas.Left="31" Canvas.Top="250" RenderTransformOrigin="1.43,0.989" Click="btnThem_Click"></Button>
-            <Button Width="80" Height="20" Content="Hủy" Canvas.Left="138" Canvas.Top="250" RenderTransformOrigin="-1.826,1.803"></Button>
+            <Button x:Name="btnHuy" Width="80" Height="20" Content="Hủy" Canvas.Left="138" Canvas.Top="250" RenderTransformOrigin="-1.826,1.803" Click="btnHuy_Click"></Button>
         </Canvas>
     </Canvas>
 </Window>

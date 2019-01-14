@@ -185,7 +185,7 @@ namespace _1612205
         
         private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("có nè");
+            
         }
         #endregion
 
@@ -212,5 +212,12 @@ namespace _1612205
         TaoMangCacSanPham(ref LSanPham, this);
             lsvProduct.ItemsSource = LSanPham;
         }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock textBlock = sender as TextBlock;
+            WinChiTietSP winChiTietSP = new WinChiTietSP(Int32.Parse(textBlock.Text));
+            winChiTietSP.ShowDialog();
+        }        
     }
 }

@@ -17,13 +17,26 @@ namespace BUS
         {
             return dalSanPham.getSanPham();
         }
-       public DataTable getLoaiSanPham()
+        public DataTable getLoaiSanPham()
         {
             return dalSanPham.getLoaiSanPham();
+        }
+        public DataTable getChiTietSanPham(int MaSanPham)
+        {
+            return dalSanPham.getChiTietSanPham(MaSanPham);
         }
         public bool themSanPham(DTO_SanPham SP)
         {
             return dalSanPham.themSanPham(SP);
+        }
+        public bool suaChiTietSanPham(string TenSanPham, int GiaBanSanPham, int GiaMuaSanPham, int SoLuong, int LoaiSanPham, string FileAnh, int MaSanPham)
+        {
+            return dalSanPham.suaChiTietSanPham(TenSanPham, GiaBanSanPham, GiaMuaSanPham, SoLuong, LoaiSanPham, FileAnh, MaSanPham);
+
+        }
+        public bool xoaSanPham(int maSanPham)
+        {
+            return dalSanPham.xoaSanPham(maSanPham);
         }
     }
 }

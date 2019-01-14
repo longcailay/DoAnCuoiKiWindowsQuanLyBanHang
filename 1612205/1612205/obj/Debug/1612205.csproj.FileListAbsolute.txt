@@ -76,3 +76,5 @@ F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\1612205.exe
 F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\1612205.pdb
 F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\WinThemSP.g.cs
 F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\WinThemSP.baml
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\WinChiTietSP.g.cs
+F:\DOANWINF\DoAnCuoiKiWindowsQuanLyBanHang\1612205\1612205\obj\Debug\WinChiTietSP.baml
