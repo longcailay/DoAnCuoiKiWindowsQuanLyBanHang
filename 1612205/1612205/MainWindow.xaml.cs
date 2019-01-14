@@ -35,8 +35,7 @@ namespace _1612205
 
         #region Usercontrol SanPham
         BUS_SanPham BUS_SP = new BUS_SanPham();        
-        public List<CSanPham> LSanPham = new List<CSanPham>();        
-
+         
         #region Lop san pham
         public class CSanPham
         {
@@ -110,11 +109,17 @@ namespace _1612205
 
         }
         #endregion
-       
-        public void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham)
+        public DataTable loadSanPham()
         {
-            DataTable dttbSP = BUS_SP.getSanPham();
-            for(int i = 0; i < dttbSP.Rows.Count; i++)//dttbSP.Rows.Count
+            return BUS_SP.getSanPham();
+        }
+
+        public static void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham, MainWindow mainWindow)
+        {
+            //DataTable dttbSP = BUS_SP.getSanPham();
+            DataTable dttbSP = mainWindow.loadSanPham();
+            
+            for (int i = 0; i < dttbSP.Rows.Count; i++)//dttbSP.Rows.Count
             {
                  string tenSP = dttbSP.Rows[i][0].ToString();
                  string  fileAnh = dttbSP.Rows[i][1].ToString();
@@ -142,12 +147,10 @@ namespace _1612205
             uscBaoCao.Visibility = Visibility.Collapsed;
             uscGiaoDich.Visibility = Visibility.Collapsed;
             uscSanPham.Visibility = Visibility.Visible;
-            uscSanPham_Load();
+            //uscSanPham_Loaded(sender, e);
+            gridViewSanPham_Loaded(sender, e);
         }
-        public DataTable loadSanPham()
-        {
-            return BUS_SP.getSanPham();
-        }
+       
         private void lsvProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //lsvProduct.ItemsSource=getS
@@ -179,15 +182,10 @@ namespace _1612205
             WinThemSP winThemSP = new WinThemSP();
             winThemSP.ShowDialog();
         }
-        public void uscSanPham_Load()
-        {          
-            TaoMangCacSanPham(ref LSanPham);
-            lsvProduct.ItemsSource = LSanPham;
-        }
+        
         private void uscSanPham_Loaded(object sender, RoutedEventArgs e)
         {
-            //TaoMangCacSanPham(ref LSanPham);
-            //lsvProduct.ItemsSource = LSanPham;
+            MessageBox.Show("có nè");
         }
         #endregion
 
@@ -202,11 +200,17 @@ namespace _1612205
 
         private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
         {
+            
             uscBaoCao.Visibility = Visibility.Collapsed;
             uscGiaoDich.Visibility = Visibility.Visible;
             uscSanPham.Visibility = Visibility.Collapsed;
         }
 
-       
+        private void gridViewSanPham_Loaded(object sender, RoutedEventArgs e)
+        {
+           List<CSanPham> LSanPham = new List<CSanPham>();
+        TaoMangCacSanPham(ref LSanPham, this);
+            lsvProduct.ItemsSource = LSanPham;
+        }
     }
 }

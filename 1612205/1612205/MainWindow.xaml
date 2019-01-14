@@ -35,7 +35,7 @@
                     <Button Name="btnLocSanPham" Width="200" Content="Lọc"></Button>
                     <Button Name="btnTimKiemSanPham" Width="200" Content="Tìm kiếm"></Button>
                 </StackPanel>
-                <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510">
+                <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510" Loaded="gridViewSanPham_Loaded">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

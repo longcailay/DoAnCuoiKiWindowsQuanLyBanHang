@@ -107,8 +107,7 @@ namespace _1612205
                 return;
             }
             int loaiSanPham;
-            Int32.TryParse(cbxLoaiSP.SelectedValue.ToString(),out loaiSanPham);
-            MessageBox.Show(loaiSanPham.ToString());
+            Int32.TryParse(cbxLoaiSP.SelectedValue.ToString(),out loaiSanPham);            
             DTO_SanPham SP = new DTO_SanPham(0, txbTenSanPham.Text, imgLoc2, Int32.Parse(txbGiaBan.Text), Int32.Parse(txbGiaMua.Text), 1, loaiSanPham, Int32.Parse(txbSoLuong.Text));
             if (BUS_SP.themSanPham(SP))
             {
@@ -118,8 +117,7 @@ namespace _1612205
             else
             {
                 MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-                  
+            }                
            
         }
 
