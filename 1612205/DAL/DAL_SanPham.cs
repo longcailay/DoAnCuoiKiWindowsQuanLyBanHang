@@ -22,7 +22,31 @@ namespace DAL
             da.Fill(dtSanPham);
             return dtSanPham;
         }
-
+        public DataTable getSanPham(string strTimKiem)
+        {
+            {
+                string ss = strTimKiem;//string search                           
+                SqlDataAdapter da;
+                // Query string 
+                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham where TinhTrang = 1 and sp.TenSanPham like N'{0}%' OR sp.TenSanPham LIKE N'%{0}' OR sp.TenSanPham LIKE N'%{0}%'", ss);
+                da = new SqlDataAdapter(SQL, _conn);
+                DataTable dtKhachHangSuaChua = new DataTable();
+                da.Fill(dtKhachHangSuaChua);
+                return dtKhachHangSuaChua;
+            }
+        }
+        public DataTable getSanPham(int maLoaiSanPham)
+        {
+            {                                       
+                SqlDataAdapter da;
+                // Query string 
+                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham where TinhTrang = 1 and sp.MaLoaiSanPham = {0}", maLoaiSanPham);
+                da = new SqlDataAdapter(SQL, _conn);
+                DataTable dtKhachHangSuaChua = new DataTable();
+                da.Fill(dtKhachHangSuaChua);
+                return dtKhachHangSuaChua;
+            }
+        }
         public DataTable getLoaiSanPham()
         {
             SqlDataAdapter da = new SqlDataAdapter("select TenLoaiSanPham,MaLoaiSanPham from LOAISANPHAM", _conn);

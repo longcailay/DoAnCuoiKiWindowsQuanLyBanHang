@@ -97,3 +97,32 @@ insert into SANPHAM values (N'Nước giặc Caremore','F:\Images\NuocGiacCaremo
 insert into SANPHAM values (N'Nước mắm Đệ nhị','F:\Images\NuocMamDeNhi.jpg',170000,160000,1,3,20)
 insert into SANPHAM values (N'Nước mắm Hạnh Phúc','F:\Images\NuocMamHanhPhuc.jpg',30000,26000,1,3,20)
 insert into SANPHAM values (N'Nước mắm Kakom','F:\Images\NuocMamKakom.jpg',24000,20000,1,3,20)
+
+
+--12. Tao bang account
+CREATE TABLE TAIKHOAN
+(
+MaTaiKhoan int identity(0,1) not null,
+Username nvarchar(45) not null,
+Pass nvarchar(45) not null,
+LoaiNhanVien int not null,
+MaNhanVien int not null,
+constraint PK_TAIKHOAN primary key (MaTaiKhoan)
+)
+insert into TAIKHOAN values ('admin','1234',0,0)
+insert into TAIKHOAN values ('user1','1234',1,1)
+insert into TAIKHOAN values ('user2','1234',1,2)
+insert into TAIKHOAN values ('user3','1234',1,3)
+
+--1.Tao bang nhanvien
+CREATE TABLE NHANVIEN
+(
+MaNhanVien int identity(0,1) not null,
+Ten nvarchar(45) not null,
+SoDienThoai char(13) not null,
+constraint PK_NHANVIEN  primary key(MaNhanVien)
+)
+insert into NHANVIEN values (N'Nguyễn Văn A','123456789')
+insert into NHANVIEN values (N'Nguyễn Văn B','123456788')
+insert into NHANVIEN values (N'Nguyễn Thị C','123456777')
+insert into NHANVIEN values (N'Trần Văn D','123456666')

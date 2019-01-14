@@ -17,6 +17,14 @@ namespace BUS
         {
             return dalSanPham.getSanPham();
         }
+        public DataTable getSanPham(string strTimKiem)
+        {
+            return dalSanPham.getSanPham(strTimKiem);
+        }
+        public DataTable getSanPham(int maLoaiSP)
+        {
+            return dalSanPham.getSanPham(maLoaiSP);
+        }
         public DataTable getLoaiSanPham()
         {
             return dalSanPham.getLoaiSanPham();

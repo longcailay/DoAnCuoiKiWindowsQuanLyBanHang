@@ -34,8 +34,8 @@ namespace _1612205
         }
 
         #region Usercontrol SanPham
-        BUS_SanPham BUS_SP = new BUS_SanPham();        
-         
+        BUS_SanPham BUS_SP = new BUS_SanPham();
+        int modeFind = 0;//0. mặc định tìm hết,1. tìm theo khung tìm kiếm,2. tìm theo khung lọc
         #region Lop san pham
         public class CSanPham
         {
@@ -109,15 +109,28 @@ namespace _1612205
 
         }
         #endregion
-        public DataTable loadSanPham()
+        public DataTable loadSanPham(int mode)//mode 0. mặc định tìm hết,1. tìm theo khung tìm kiếm,2. tìm theo khung lọc
         {
+            if (mode == 1)
+            {
+                return BUS_SP.getSanPham(txbTimKiem.Text);
+            }
+            if (mode == 2)
+            {
+                if (cbxLoc.SelectedIndex != -1)
+                {
+                    int loaiSanPham;
+                    Int32.TryParse(cbxLoc.SelectedValue.ToString(), out loaiSanPham);
+                    return BUS_SP.getSanPham(loaiSanPham);
+                }
+            }
             return BUS_SP.getSanPham();
         }
 
-        public static void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham, MainWindow mainWindow)
+        public static void TaoMangCacSanPham(ref List<CSanPham> MangCacSanPham, MainWindow mainWindow,int mode)
         {
             //DataTable dttbSP = BUS_SP.getSanPham();
-            DataTable dttbSP = mainWindow.loadSanPham();
+            DataTable dttbSP = mainWindow.loadSanPham(mode);
             
             for (int i = 0; i < dttbSP.Rows.Count; i++)//dttbSP.Rows.Count
             {
@@ -208,8 +221,8 @@ namespace _1612205
 
         private void gridViewSanPham_Loaded(object sender, RoutedEventArgs e)
         {
-           List<CSanPham> LSanPham = new List<CSanPham>();
-        TaoMangCacSanPham(ref LSanPham, this);
+            List<CSanPham> LSanPham = new List<CSanPham>();
+            TaoMangCacSanPham(ref LSanPham, this, modeFind);
             lsvProduct.ItemsSource = LSanPham;
         }
 
@@ -218,6 +231,41 @@ namespace _1612205
             TextBlock textBlock = sender as TextBlock;
             WinChiTietSP winChiTietSP = new WinChiTietSP(Int32.Parse(textBlock.Text));
             winChiTietSP.ShowDialog();
-        }        
+        }
+
+        private void cbxLoc_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable dtTable = BUS_SP.getLoaiSanPham();
+            cbxLoc.ItemsSource = dtTable.DefaultView;
+            cbxLoc.DisplayMemberPath = "TenLoaiSanPham";
+            cbxLoc.SelectedValuePath = "MaLoaiSanPham";
+            cbxLoc.SelectedIndex = -1;
+        }
+
+        private void btnTimKiem_Click(object sender, RoutedEventArgs e)
+        {
+            if(txbTimKiem.Text == "")
+            {
+                modeFind = 0;                
+            }
+            else
+            {
+                modeFind = 1;                
+            }
+            this.gridViewSanPham_Loaded(sender, e);
+        }
+
+        private void btnLoc_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbxLoc.SelectedIndex == -1)
+            {
+                modeFind = 0;                
+            }
+            else
+            {
+                modeFind = 2;
+            }
+            this.gridViewSanPham_Loaded(sender, e);
+        }
     }
 }

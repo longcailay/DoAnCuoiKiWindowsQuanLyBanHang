@@ -34,11 +34,16 @@
                     <Button Name="btnThemSanPham" Width="200" Content="Thêm Sản Phẩm" Click="btnThemSanPham_Click"/>
                     <StackPanel Name="stpLocSanPham" Width="300" >
                         <Canvas>
-                            <Label Content="Tìm kiếm" FontSize="20" VerticalAlignment="Center" Height="59" Width="130" Canvas.Top="20"/>
-                        
+                            <Button Name="btnTimKiem" Content="Tìm kiếm" FontSize="20" VerticalAlignment="Center" Height="50" Width="100" Canvas.Top="30" Click="btnTimKiem_Click"/>
+                            <TextBox Name="txbTimKiem" FontSize="15" Width="180" Height="40" Canvas.Left="100" Canvas.Top="25"></TextBox>
                         </Canvas>
                     </StackPanel>
-                    <Button Name="btnTimKiemSanPham" Width="300" Content="Tìm kiếm"></Button>
+                    <StackPanel Name="btnTimKiemSanPham" Width="300" >
+                        <Canvas>
+                            <Button Name="btnLoc" Content="Lọc theo" FontSize="20" VerticalAlignment="Center" Height="50" Width="100" Canvas.Top="30" Click="btnLoc_Click"/>
+                            <ComboBox Name="cbxLoc" Width="180" Height="40" Canvas.Left="100" Canvas.Top="25" Loaded="cbxLoc_Loaded"></ComboBox>
+                        </Canvas>
+                    </StackPanel>
                 </StackPanel>
                 <Grid Name="gridViewSanPham" Canvas.Top="80" Width="800" Height="510" Loaded="gridViewSanPham_Loaded">
                     <Grid.ColumnDefinitions>
