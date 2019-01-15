@@ -67,6 +67,9 @@
     <Compile Include="WinChiTietSP.xaml.cs">
       <DependentUpon>WinChiTietSP.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinDuaSPVaoGioHang.xaml.cs">
+      <DependentUpon>WinDuaSPVaoGioHang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinThemSP.xaml.cs">
       <DependentUpon>WinThemSP.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="WinChiTietSP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinDuaSPVaoGioHang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

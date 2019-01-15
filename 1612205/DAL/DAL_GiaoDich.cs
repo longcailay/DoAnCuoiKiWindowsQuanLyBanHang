@@ -96,6 +96,15 @@ namespace DAL
             int SL = Int32.Parse(dtDonHang.Rows[0][0].ToString());
             return SL;
         }
+
+        public DataTable getDonHangMoiTao(int MaDonHang)
+        {
+            string SQL = string.Format($"select maDonHang,NgayBan from DONHANG where MaDonHang = {MaDonHang}");
+            SqlDataAdapter da = new SqlDataAdapter(SQL, _conn);
+            DataTable dtDonHang = new DataTable();
+            da.Fill(dtDonHang);
+            return dtDonHang;
+        }
         public bool xoaDonHang(int maDonHang,int mode)//mode=0. đơn hàng chưa có sp nào nên không có dữ liệu trong bẳng SP_DH
                                                       //mode=1. đơn hàng đã có sản phẩm trong bảng SP_DH
         {

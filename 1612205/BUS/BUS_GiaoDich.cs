@@ -36,5 +36,9 @@ namespace BUS
         {
             return dalGiaoDich.lapDonHangMoi(ngayLap);
         }
+        public DataTable getDonHangMoiTao(int maDonHang)
+        {
+            return dalGiaoDich.getDonHangMoiTao(maDonHang);
+        }
     }
 }

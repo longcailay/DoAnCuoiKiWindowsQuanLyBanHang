@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_1612205"        
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" MaxHeight="700" MaxWidth="1100">
+        Title="MainWindow" Height="700" Width="1100" WindowStartupLocation="CenterScreen" MaxHeight="700" MaxWidth="1100" Closing="Window_Closing" Closed="Window_Closed">
     <Canvas >
         <Grid Height="80" VerticalAlignment="Top" Background="#FF5C99D6" Width="1100">
             <Grid.ColumnDefinitions>
@@ -28,7 +28,7 @@
         </DockPanel>
 
         <!--#region Usercontrol sanPham-->
-        <UserControl Name="uscSanPham"  Background="Green" Width="800" Canvas.Left="300" Canvas.Top="76" Height="590" d:IsHidden="True">
+        <UserControl Name="uscSanPham"  Background="Green" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590" d:IsHidden="True">
             <Canvas>
                 <StackPanel Name="stpSanPhamButtons" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
                     <Button Name="btnThemSanPham" Width="200" Content="Thêm Sản Phẩm" Click="btnThemSanPham_Click"/>
@@ -100,9 +100,12 @@
         <UserControl Name="uscGiaoDich"  Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590" Loaded="uscGiaoDich_Loaded">
             <Canvas>
                 <StackPanel Name="stpGiaoDichButtons" Canvas.Left="0" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
-                    <Button Name="btnLapDonHang" Width="200" Content="Lập đơn hàng" Click="btnLapDonHang_Click"/>
+                    <Button Name="btnLapDonHang" Width="300" Content="Lập đơn hàng" Click="btnLapDonHang_Click"/>
+                    <Button Name="btnQuayVeDonHang" Width="300" Content="Quay về đơn hàng" Click="btnQuayVeDonHang_Click"/>
+                    <Button Name="btnDenCuaHang" Content="Đến cửa hàng" Width="201" Click="btnDenCuaHang_Click" />
+
                 </StackPanel>
-                <Canvas Name="cv_LapDonHang" Width="800" Height="590" Canvas.Left="0" Canvas.Top="0">
+                <Canvas Name="cv_LapDonHang" Width="800" Height="590" Canvas.Left="0" Canvas.Top="0" Loaded="cv_LapDonHang_Loaded">
                     <TextBlock Text="Mã đơn hàng" Canvas.Left="20" Canvas.Top="100"></TextBlock>
                     <TextBox Name="txbMaDH_LapDonHang" Canvas.Left="130" Canvas.Top="100" Height="30" Width="70" IsEnabled="False"></TextBox>
                     <TextBlock Text="Tên khách hàng" Canvas.Left="20" Canvas.Top="150"></TextBlock>
@@ -115,7 +118,7 @@
                     <Button Name="btnLuu_LapDonHang" Content="Lưu" Canvas.Left="200" Canvas.Top="500" Click="btnLuu_LapDonHang_Click"></Button>
                     <Button Name="btnHuy_LapDonHang" Content="Hủy" Canvas.Left="250" Canvas.Top="500" Click="btnHuy_LapDonHang_Click"></Button>
                     <DataGrid Name="dtgrSanPham_LapDonHang"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="476" Height="262" Canvas.Left="174" Canvas.Top="200"></DataGrid>
-                    <Button></Button>
+                    
                 </Canvas>
                 <Canvas Name="cv_CacDonHang" Width="800" Height="590" Canvas.Left="0" Canvas.Top="0" d:IsHidden="True">
                     <Canvas Width="380" Height="800" Canvas.Top="80" Background="Azure">
