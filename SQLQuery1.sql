@@ -85,7 +85,6 @@ insert into LOAISANPHAM values(N'Dầu gội đầu')
 insert into LOAISANPHAM values(N'Nước giặc')
 insert into LOAISANPHAM values(N'Nước mắm')
 
-delete SANPHAM
 
 insert into SANPHAM values (N'Dầu ăn Neptune','F:\Images\DauAnNeptune.jpg',130000,100000,1,0,20)
 insert into SANPHAM values (N'Dầu ăn Ranee','F:\Images\DauAnRanee.jpg',30000,27000,1,0,30)

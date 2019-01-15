@@ -17,7 +17,7 @@ namespace DAL
         /// <returns></returns>
         public DataTable getSanPham()
         {
-            SqlDataAdapter da = new SqlDataAdapter("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham where TinhTrang = 1", _conn);
+            SqlDataAdapter da = new SqlDataAdapter("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,spkm.PhanTram,TinhTrang,GiaMuaSanPham,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join SANPHAM_KHUYENMAI spkm on  sp.MaSanPham = spkm.MaSanPham where TinhTrang = 1", _conn);
             DataTable dtSanPham = new DataTable();
             da.Fill(dtSanPham);
             return dtSanPham;
@@ -28,7 +28,7 @@ namespace DAL
                 string ss = strTimKiem;//string search                           
                 SqlDataAdapter da;
                 // Query string 
-                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham where TinhTrang = 1 and sp.TenSanPham like N'{0}%' OR sp.TenSanPham LIKE N'%{0}' OR sp.TenSanPham LIKE N'%{0}%'", ss);
+                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,spkm.PhanTram,TinhTrang,GiaMuaSanPham,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join SANPHAM_KHUYENMAI spkm on  sp.MaSanPham = spkm.MaSanPham where TinhTrang = 1 and sp.TenSanPham like N'{0}%' OR sp.TenSanPham LIKE N'%{0}' OR sp.TenSanPham LIKE N'%{0}%'", ss);
                 da = new SqlDataAdapter(SQL, _conn);
                 DataTable dtKhachHangSuaChua = new DataTable();
                 da.Fill(dtKhachHangSuaChua);
@@ -40,7 +40,7 @@ namespace DAL
             {                                       
                 SqlDataAdapter da;
                 // Query string 
-                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,PhanTram,NgayBatDau,NgayKetThuc,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join KHUYENMAI km on sp.MaSanPham = km.MaSanPham where TinhTrang = 1 and sp.MaLoaiSanPham = {0}", maLoaiSanPham);
+                string SQL = string.Format("select TenSanPham,FileAnh,GiaBanSanPham,SoLuong,spkm.PhanTram,TinhTrang,GiaMuaSanPham,sp.MaSanPham,sp.MaLoaiSanPham from SANPHAM sp left join SANPHAM_KHUYENMAI spkm on  sp.MaSanPham = spkm.MaSanPham where TinhTrang = 1 and sp.MaLoaiSanPham = {0}", maLoaiSanPham);
                 da = new SqlDataAdapter(SQL, _conn);
                 DataTable dtKhachHangSuaChua = new DataTable();
                 da.Fill(dtKhachHangSuaChua);

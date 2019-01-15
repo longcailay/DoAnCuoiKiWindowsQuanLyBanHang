@@ -12,7 +12,7 @@ namespace DAL
 {
     public class  DAL_DBConnect
     {               
-            protected SqlConnection _conn = new SqlConnection("Data Source=.;Initial Catalog=QuanLyBanHang;Integrated Security=True");
+            protected SqlConnection _conn = new SqlConnection("Data Source=.;Initial Catalog=QLBH;Integrated Security=True");
     }
 }
 
