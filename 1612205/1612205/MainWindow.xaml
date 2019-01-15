@@ -97,28 +97,45 @@
         <!--#endregion-->
 
 
-        <UserControl Name="uscGiaoDich"  Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590">
+        <UserControl Name="uscGiaoDich"  Background="Pink" Width="800" Canvas.Left="300" Canvas.Top="80" Height="590" Loaded="uscGiaoDich_Loaded">
             <Canvas>
                 <StackPanel Name="stpGiaoDichButtons" Canvas.Left="0" Background="Beige" Orientation="Horizontal" Width="800" Height="80">
-                    <Button Name="btnLapDonHang" Width="200" Content="Lập đơn hàng"/>
+                    <Button Name="btnLapDonHang" Width="200" Content="Lập đơn hàng" Click="btnLapDonHang_Click"/>
                 </StackPanel>
-                <Canvas Width="380" Height="800" Canvas.Top="80" Background="Azure">
-                    <Label Content="CÁC ĐƠN HÀNG" Height="80" HorizontalAlignment="Center" FontSize="30" Width="380"></Label>
-                    <DataGrid Name="dtgrCacDonHang"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Height="430" Canvas.Top="80" Loaded="dtgrCacDonHang_Loaded" MouseDoubleClick="dtgrCacDonHang_MouseDoubleClick" ></DataGrid>
-                    <Canvas Width="350" Height="430" Canvas.Top="80" Canvas.Left="450">
-                        <TextBlock Text="CHI TIẾT ĐƠN HÀNG" Height="84" VerticalAlignment="Center" FontSize="20" Canvas.Left="50" ></TextBlock>
-                        <TextBlock Text="Mã đơn hàng" Canvas.Left="20" Canvas.Top="80"></TextBlock>
-                        <TextBlock Text="Tên khách hàng" Canvas.Left="20" Canvas.Top="130"></TextBlock>
-                        <TextBlock Text="Ngày bán" Canvas.Left="20" Canvas.Top="180"></TextBlock>
-                        <TextBlock Text="Tổng tiền" Canvas.Left="20" Canvas.Top="230"></TextBlock>
-                        <TextBox Name="txbMaDonHang" Canvas.Left="130" Canvas.Top="80" Height="30" Width="170" IsEnabled="False"></TextBox>
-                        <TextBox  Name="txbTenKhachHang" Canvas.Left="130" Canvas.Top="130" Height="30" Width="170" IsEnabled="False"></TextBox>
-                        <DatePicker Name="dtpkNgayBan" Canvas.Left="130" Canvas.Top="180" Height="30" Width="170" IsEnabled="False"></DatePicker>
-                        <TextBox  Name="txbTongTien" Canvas.Left="130" Canvas.Top="230" Height="30" Width="170" IsEnabled="False"></TextBox>
+                <Canvas Name="cv_LapDonHang" Width="800" Height="590" Canvas.Left="0" Canvas.Top="0">
+                    <TextBlock Text="Mã đơn hàng" Canvas.Left="20" Canvas.Top="100"></TextBlock>
+                    <TextBox Name="txbMaDH_LapDonHang" Canvas.Left="130" Canvas.Top="100" Height="30" Width="70" IsEnabled="False"></TextBox>
+                    <TextBlock Text="Tên khách hàng" Canvas.Left="20" Canvas.Top="150"></TextBlock>
+                    <TextBox  Name="txbTenKH_LapDonHang" Canvas.Left="130" Canvas.Top="150" Height="30" Width="170"></TextBox>
+                    <TextBlock Text="Ngày" Canvas.Left="500" Canvas.Top="100"></TextBlock>
+                    <DatePicker Name="dtpkNgay_LapDonHang" Canvas.Left="550" Canvas.Top="100" Height="30" Width="100" IsEnabled="False"></DatePicker>
+                    <TextBlock Text="Tổng tiền" Canvas.Left="500" Canvas.Top="480"></TextBlock>
+                    <TextBox Name="txbTongTien_LapDonHang"  Canvas.Left="600" Canvas.Top="480" Height="30" Width="150" IsEnabled="False"></TextBox>
+                    <Button Name="btnThanhToan_LapDonHang" Content="Thanh toán" Canvas.Left="100" Canvas.Top="500" Click="btnThanhToan_LapDonHang_Click"></Button>
+                    <Button Name="btnLuu_LapDonHang" Content="Lưu" Canvas.Left="200" Canvas.Top="500" Click="btnLuu_LapDonHang_Click"></Button>
+                    <Button Name="btnHuy_LapDonHang" Content="Hủy" Canvas.Left="250" Canvas.Top="500" Click="btnHuy_LapDonHang_Click"></Button>
+                    <DataGrid Name="dtgrSanPham_LapDonHang"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="476" Height="262" Canvas.Left="174" Canvas.Top="200"></DataGrid>
+                    <Button></Button>
+                </Canvas>
+                <Canvas Name="cv_CacDonHang" Width="800" Height="590" Canvas.Left="0" Canvas.Top="0" d:IsHidden="True">
+                    <Canvas Width="380" Height="800" Canvas.Top="80" Background="Azure">
+                        <Label Content="CÁC ĐƠN HÀNG" Height="80" HorizontalAlignment="Center" FontSize="30" Width="380"></Label>
+                        <DataGrid Name="dtgrCacDonHang"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="450" Height="430" Canvas.Top="80" Loaded="dtgrCacDonHang_Loaded" MouseDoubleClick="dtgrCacDonHang_MouseDoubleClick" ></DataGrid>
+                        <Canvas Width="350" Height="430" Canvas.Top="80" Canvas.Left="450">
+                            <TextBlock Text="CHI TIẾT ĐƠN HÀNG" Height="84" VerticalAlignment="Center" FontSize="20" Canvas.Left="50" ></TextBlock>
+                            <TextBlock Text="Mã đơn hàng" Canvas.Left="20" Canvas.Top="80"></TextBlock>
+                            <TextBlock Text="Tên khách hàng" Canvas.Left="20" Canvas.Top="130"></TextBlock>
+                            <TextBlock Text="Ngày bán" Canvas.Left="20" Canvas.Top="180"></TextBlock>
+                            <TextBlock Text="Tổng tiền" Canvas.Left="20" Canvas.Top="230"></TextBlock>
+                            <TextBox Name="txbMaDonHang" Canvas.Left="130" Canvas.Top="80" Height="30" Width="170" IsEnabled="False"></TextBox>
+                            <TextBox  Name="txbTenKhachHang" Canvas.Left="130" Canvas.Top="130" Height="30" Width="170" IsEnabled="False"></TextBox>
+                            <DatePicker Name="dtpkNgayBan" Canvas.Left="130" Canvas.Top="180" Height="30" Width="170" IsEnabled="False"></DatePicker>
+                            <TextBox  Name="txbTongTien" Canvas.Left="130" Canvas.Top="230" Height="30" Width="170" IsEnabled="False"></TextBox>
 
-                        <Canvas Name="cv_btnThanhToan_Xoa" Height="50" Width="200" Canvas.Left="100" Canvas.Top="320" Visibility="Collapsed" Loaded="cv_btnThanhToan_Xoa_Loaded">
-                            <Button Name="btnThanhToan"  Content="Thanh toán" Width="70" Height="30" Click="btnThanhToan_Click"></Button>
-                            <Button Name="btnXoaDonHang"  Content="Xóa" Width="70" Height="30" Canvas.Left="100" Click="btnXoaDonHang_Click"></Button>
+                            <Canvas Name="cv_btnThanhToan_Xoa" Height="50" Width="200" Canvas.Left="100" Canvas.Top="320" Visibility="Collapsed" Loaded="cv_btnThanhToan_Xoa_Loaded">
+                                <Button Name="btnThanhToan"  Content="Thanh toán" Width="70" Height="30" Click="btnThanhToan_Click"></Button>
+                                <Button Name="btnXoaDonHang"  Content="Xóa" Width="70" Height="30" Canvas.Left="100" Click="btnXoaDonHang_Click"></Button>
+                            </Canvas>
                         </Canvas>
                     </Canvas>
                 </Canvas>

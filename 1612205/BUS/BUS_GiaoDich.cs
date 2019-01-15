@@ -28,5 +28,13 @@ namespace BUS
         {
             return dalGiaoDich.thanhToanDonHang(maDonHang);
         }
+        public int getMaxIdDonHang()
+        {
+            return dalGiaoDich.getMaxIdDonHang();
+        }
+        public bool lapDonHangMoi(DateTime ngayLap)
+        {
+            return dalGiaoDich.lapDonHangMoi(ngayLap);
+        }
     }
 }

@@ -32,7 +32,8 @@ namespace _1612205
             InitializeComponent();
             
         }
-
+        int isLapDonHang = 0;
+        int maDHCur_LapDonHang = 0;
         BUS_GiaoDich BUS_GD = new BUS_GiaoDich();
         public class CDonHang
         {
@@ -85,6 +86,7 @@ namespace _1612205
             }
             return MangDonHang;
         }
+
         #region Usercontrol SanPham
         BUS_SanPham BUS_SP = new BUS_SanPham();
         int modeFind = 0;//0. mặc định tìm hết,1. tìm theo khung tìm kiếm,2. tìm theo khung lọc
@@ -289,6 +291,8 @@ namespace _1612205
             uscSanPham.Visibility = Visibility.Collapsed;
             dtgrCacDonHang_Loaded(sender, e);
             cv_btnThanhToan_Xoa.Visibility = Visibility.Collapsed;
+            cv_CacDonHang.Visibility = Visibility.Visible;
+            cv_LapDonHang.Visibility = Visibility.Collapsed;
         }
 
         private void dtgrCacDonHang_Loaded(object sender, RoutedEventArgs e)
@@ -413,6 +417,49 @@ namespace _1612205
                     MessageBox.Show("thanh toán thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+        }
+
+        private void btnLapDonHang_Click(object sender, RoutedEventArgs e)
+        {
+            cv_CacDonHang.Visibility = Visibility.Collapsed;
+            cv_LapDonHang.Visibility = Visibility.Visible;
+            isLapDonHang = 1;
+            DateTime a = DateTime.Now;
+            //MessageBox.Show(a.ToShortDateString());          
+            if(BUS_GD.lapDonHangMoi(a))
+            {
+                maDHCur_LapDonHang = BUS_GD.getMaxIdDonHang();
+                //btnLapDonHang.Visibility = Visibility.Collapsed;
+                uscSanPham.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Không thể lập đơn hàng!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            MessageBox.Show("hđhdh");
+        }
+
+        private void uscGiaoDich_Loaded(object sender, RoutedEventArgs e)
+        {
+            cv_LapDonHang.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnLuu_LapDonHang_Click(object sender, RoutedEventArgs e)
+        {
+            isLapDonHang = 0;
+            
+        }
+
+        private void btnHuy_LapDonHang_Click(object sender, RoutedEventArgs e)
+        {
+            isLapDonHang = 0;
+            uscGiaoDich_Loaded(sender, e);
+        }
+
+        private void btnThanhToan_LapDonHang_Click(object sender, RoutedEventArgs e)
+        {
+            isLapDonHang = 0;
         }
     }
 }
