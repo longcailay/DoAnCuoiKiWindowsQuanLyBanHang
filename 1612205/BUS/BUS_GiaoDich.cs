@@ -16,5 +16,17 @@ namespace BUS
         {
             return dalGiaoDich.getDonHang();
         }
+        public bool xoaDonHang(int maDonHang,int mode)
+        {
+            return dalGiaoDich.xoaDonHang(maDonHang,mode);
+        }
+        public int getSoLuongSPTrongSPDH(int maDonHang)
+        {
+            return dalGiaoDich.getSoLuongSPTrongSPDH(maDonHang);
+        }
+        public bool thanhToanDonHang(int maDonHang)
+        {
+            return dalGiaoDich.thanhToanDonHang(maDonHang);
+        }
     }
 }

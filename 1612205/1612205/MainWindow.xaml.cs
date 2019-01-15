@@ -283,12 +283,12 @@ namespace _1612205
         }
 
         private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {            
             uscBaoCao.Visibility = Visibility.Collapsed;
             uscGiaoDich.Visibility = Visibility.Visible;
             uscSanPham.Visibility = Visibility.Collapsed;
             dtgrCacDonHang_Loaded(sender, e);
+            cv_btnThanhToan_Xoa.Visibility = Visibility.Collapsed;
         }
 
         private void dtgrCacDonHang_Loaded(object sender, RoutedEventArgs e)
@@ -297,18 +297,24 @@ namespace _1612205
             List<CDonHang> LDonHang = TaoMangCacDonHang(this);
             
             dtgrCacDonHang.ItemsSource = LDonHang;
-            dtgrCacDonHang.Columns[0].Header = "Mã ĐH";
+            dtgrCacDonHang.Columns[0].Header = "Mã ĐH";            
             dtgrCacDonHang.Columns[1].Header = "Tên KH";
             dtgrCacDonHang.Columns[2].Header = "Ngày bán";
             dtgrCacDonHang.Columns[3].Header = "Tổng tiền";
             dtgrCacDonHang.Columns[4].Header = "Thanh toán";
+            dtgrCacDonHang.Columns[0].IsReadOnly = true;
+            dtgrCacDonHang.Columns[1].IsReadOnly = true;
+            dtgrCacDonHang.Columns[2].IsReadOnly = true;
+            dtgrCacDonHang.Columns[3].IsReadOnly = true;
+            dtgrCacDonHang.Columns[4].IsReadOnly = true;
             dtgrCacDonHang.SelectedIndex = -1;
+            
         }
 
         private void dtgrCacDonHang_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
-            if(dtgrCacDonHang.SelectedIndex == -1)
+
+            if (dtgrCacDonHang.SelectedIndex == -1)
             {
                 //MessageBox.Show("kkk");
             }
@@ -317,37 +323,96 @@ namespace _1612205
 
                 //lấy dữ liệu tại ô đang chọn trong datagird wpf
                 dtgrCacDonHang.AutoGenerateColumns = true;
-                int indexRow = dtgrCacDonHang.SelectedIndex;
-                for (int i = 0; i < 4; i++)
-                {                    
-                    TextBlock text = dtgrCacDonHang.Columns[i].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
-                    if (text != null)
-                    {
-                        switch (i)
-                        {
-                            case 0:
-                                txbMaDonHang.Text = text.Text;
-                                break;
-                            case 1:
-                                txbTenKhachHang.Text = text.Text;
-                                break;
-                            case 3:
-                               txbTongTien.Text = text.Text;
-                                break;
-                            default:
-                                break;
-                        }
-                        
-                    }
+                int indexRow = dtgrCacDonHang.SelectedIndex;                
+                TextBlock text0 = dtgrCacDonHang.Columns[0].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
+                if (text0 != null) txbMaDonHang.Text = text0.Text;
+
+
+                TextBlock text1 = dtgrCacDonHang.Columns[1].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
+                if (text1 != null) txbTenKhachHang.Text = text1.Text;
+
+
+                TextBlock text2 = dtgrCacDonHang.Columns[2].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
+                if (text2 != null)
+                {
+                    var x = DateTime.Parse(text2.Text);
+                    dtpkNgayBan.SelectedDate = x;
                 }
 
-                /////////
-
-
-
-                //txbMaDonHang.Text = dt.Rows[indexRow][0].ToString();
+                TextBlock text3 = dtgrCacDonHang.Columns[3].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
+                if (text3 != null) txbTongTien.Text = text3.Text;
+                if (txbMaDonHang.Text != "")
+                {
+                    TextBlock text4 = dtgrCacDonHang.Columns[4].GetCellContent(dtgrCacDonHang.Items[indexRow]) as TextBlock;
+                    if (text4 != null)
+                    {
+                        MessageBox.Show(text4.Text);
+                        if(text4.Text == "Chưa thanh toán")
+                        {
+                            cv_btnThanhToan_Xoa.Visibility = Visibility.Visible;
+                            cv_btnThanhToan_Xoa_Loaded(sender, e);
+                        }
+                        else
+                        {
+                            cv_btnThanhToan_Xoa.Visibility = Visibility.Collapsed;
+                            cv_btnThanhToan_Xoa_Loaded(sender, e);
+                        }
+                    }
+                    
+                }
             }
+            
+        }
 
+        private void cv_btnThanhToan_Xoa_Loaded(object sender, RoutedEventArgs e)
+        {       
+            
+        }
+
+        private void btnXoaDonHang_Click(object sender, RoutedEventArgs e)
+        {
+            if(txbMaDonHang.Text!="")
+            {
+                int maDonHang;
+                int mode = 0;
+                Int32.TryParse(txbMaDonHang.Text, out maDonHang);
+                MessageBox.Show("dddđ "+  maDonHang.ToString());
+                if (BUS_GD.getSoLuongSPTrongSPDH(maDonHang) > 0)//đơn hàng đã có sản phẩm
+                {
+                    mode = 1;
+                }
+                else
+                {
+                    mode = 0;
+                }
+                if (BUS_GD.xoaDonHang(maDonHang,mode))
+                {
+                    MessageBox.Show("Xóa đơn hàng thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    dtgrCacDonHang_Loaded(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, RoutedEventArgs e)
+        {
+            if (txbMaDonHang.Text != "")
+            {
+                int maDonHang;
+                Int32.TryParse(txbMaDonHang.Text, out maDonHang);                
+                if (BUS_GD.thanhToanDonHang(maDonHang))
+                {
+                    MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    dtgrCacDonHang_Loaded(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("thanh toán thất bại!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
     }
 }
